@@ -8,8 +8,7 @@ dist/
 # Experiment outputs
 results/
 
-# Research notes (not part of codebase)
-paper/
+# LaTeX build artifacts (note/ source files are tracked)
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
