@@ -1,3 +1,9 @@
+# Quarto
+note/_site/
+note/_freeze/
+note/*_files/
+note/*.html
+
 # Python
 __pycache__/
 *.py[cod]

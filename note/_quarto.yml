@@ -1,0 +1,32 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - grokking-delay-proof.qmd
+
+website:
+  title: "Grokking"
+  repo-url: https://github.com/ChanceSiyuan/grokking
+  repo-actions: [source, issue]
+  navbar:
+    left:
+      - href: index.qmd
+        text: Survey
+      - href: grokking-delay-proof.qmd
+        text: Analytical Proof
+    right:
+      - icon: github
+        href: https://github.com/ChanceSiyuan/grokking
+  page-navigation: true
+  page-footer:
+    center: "Built with [Quarto](https://quarto.org/)"
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    html-math-method: mathjax
+    anchor-sections: true
+    smooth-scroll: true

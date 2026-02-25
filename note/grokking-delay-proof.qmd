@@ -41,7 +41,7 @@ $$ {#eq-gradient-flow}
 
 ### 1.4 Grokking Milestones
 
-::::{#def-milestones .callout-note icon="false"}
+::::{.callout-note icon="false"}
 ## Definition (Memorization and Grokking Times)
 
 - **Memorization time** $t_{\mathrm{mem}}$: the first epoch at which training accuracy exceeds $99\%$.
@@ -72,7 +72,7 @@ $$
 
 ### 2.2 Readout Dynamics
 
-::::{#prop-readout .callout-note icon="false"}
+::::{.callout-note icon="false"}
 ## Proposition (Readout Timescale)
 Under gradient flow (@eq-gradient-flow), the readout weights $a_j$ evolve as:
 $$
@@ -99,7 +99,7 @@ Crucially, readout fitting does not require the feature weights to change. The r
 
 ### 2.3 Feature Dynamics
 
-::::{#prop-features .callout-note icon="false"}
+::::{.callout-note icon="false"}
 ## Proposition (Feature Timescale)
 The feature weights $w_j$ evolve as:
 $$
@@ -131,7 +131,7 @@ The timescale for $O(1)$ kernel change is therefore $\tau_{\mathrm{features}} = 
 
 ### 2.4 Main Timescale Separation Theorem
 
-::::{#thm-timescale .callout-note icon="false"}
+::::{.callout-note icon="false"}
 ## Theorem (Timescale Separation)
 For a two-layer network with $\alpha$-parameterization (@eq-model) trained on modular addition with gradient flow and weight decay $\lambda > 0$:
 
@@ -160,7 +160,7 @@ Part (4) is immediate: at $\alpha = 0$, $N^{2\alpha} = 1$; at $\alpha = 1/2$, $N
 
 The timescale separation theorem gives a *width-dependent* bound. A complementary result of Lyu et al. [@lyu2024dichotomy] gives a *weight-decay-dependent* bound that applies even at fixed width:
 
-::::{#thm-lyu .callout-note icon="false"}
+::::{.callout-note icon="false"}
 ## Theorem (Implicit Bias Dichotomy [@lyu2024dichotomy])
 For a degree-$L$ homogeneous network with initialization scale $\alpha$ and weight decay $\lambda$:
 
@@ -180,7 +180,7 @@ This result shows that the grokking delay grows logarithmically in the initializ
 
 The sharpest quantitative bounds come from the ridge regression setting [@barak2025grok], which serves as an analytically tractable proxy for the nonlinear case.
 
-::::{#thm-ridge .callout-note icon="false"}
+::::{.callout-note icon="false"}
 ## Theorem (Grokking in Ridge Regression [@barak2025grok])
 Consider overparameterized ridge regression with $m$ features, $n$ training samples ($m \gg n$), feature matrix $\Phi \in \mathbb{R}^{n \times m}$, and weight decay $\lambda$. Decompose the parameter as $\theta = \theta_\parallel + \theta_\perp$ where $\theta_\parallel$ lies in the row space of $\Phi$ and $\theta_\perp$ in its null space. Then:
 
@@ -211,21 +211,21 @@ The timescale separation argument shows that memorization is *faster* than featu
 
 ### 3.1 The Two-Basin Landscape
 
-::::{#thm-basins .callout-note icon="false"}
+::::{.callout-note icon="false"}
 ## Theorem (Existence of Two Metastable Basins [@rubin2024grokking])
 For a two-layer network trained on modular addition mod $p$ with weight decay $\lambda > 0$, the effective free energy $F(\theta) = \mathcal{L}_{\mathrm{train}}(\theta) + \lambda\|\theta\|^2$ possesses two distinct metastable basins:
 
 1. **Memorization basin** $\mathcal{M}$: characterized by order parameter $m = \langle w, w^* \rangle / (\|w\|\|w^*\|) \approx 0$ (no alignment with target features).
     - Zero training loss, chance-level test accuracy.
-    - Weight norm: $\|\theta\|_\mathcal{M} = O(\sqrt{N})$ (high).
+    - Weight norm: $\|\theta\|_{\mathcal{M}} = O(\sqrt{N})$ (high).
     - Degeneracy: $O(p^2)$ equivalent solutions related by permutation symmetry of input tokens.
-    - Entropy: $S_\mathcal{M} = O(P \log P)$ (high --- exponentially many memorization configurations).
+    - Entropy: $S_{\mathcal{M}} = O(P \log P)$ (high --- exponentially many memorization configurations).
 
 2. **Generalization basin** $\mathcal{G}$: characterized by $m \approx 1$ (full alignment with Fourier features).
     - Zero training loss, near-perfect test accuracy.
-    - Weight norm: $\|\theta\|_\mathcal{G} = O(1)$ (low).
+    - Weight norm: $\|\theta\|_{\mathcal{G}} = O(1)$ (low).
     - Degeneracy: $O(p)$ solutions corresponding to distinct Fourier frequencies $\omega$ on $\mathbb{Z}_p$.
-    - Entropy: $S_\mathcal{G} = O(\log p)$ (low --- only $O(p)$ organized configurations).
+    - Entropy: $S_{\mathcal{G}} = O(\log p)$ (low --- only $O(p)$ organized configurations).
 ::::
 
 *Proof sketch.* The memorization basin exists because an overparameterized network ($P \gg n_{\mathrm{train}} = \rho p^2$) can fit arbitrary labels using its random feature capacity. The random feature interpolant has weight norm $\|\theta\| = \Theta(\sqrt{n/\lambda_{\min}(K_0)})$, which scales as $O(\sqrt{N})$ since the minimum eigenvalue of the random feature kernel decays with the ratio $n/N$.
@@ -234,18 +234,18 @@ The generalization basin exists because modular addition has a sparse representa
 
 ### 3.2 The Free Energy Barrier is Extensive
 
-::::{#thm-barrier .callout-note icon="false"}
+::::{.callout-note icon="false"}
 ## Theorem (Extensive Free Energy Barrier)
 The free energy barrier between the memorization and generalization basins satisfies:
 $$
-\Delta F := \min_{\gamma: \mathcal{M} \to \mathcal{G}} \max_{t \in [0,1]} F(\gamma(t)) - F(\theta_\mathcal{M}) = \Omega(P),
+\Delta F := \min_{\gamma: \mathcal{M} \to \mathcal{G}} \max_{t \in [0,1]} F(\gamma(t)) - F(\theta_{\mathcal{M}}) = \Omega(P),
 $$ {#eq-barrier}
 where the minimum is over all continuous paths $\gamma$ from $\mathcal{M}$ to $\mathcal{G}$ in parameter space, and $P$ is the total number of parameters.
 ::::
 
 *Proof.* The transition from $\mathcal{M}$ to $\mathcal{G}$ requires a *collective rearrangement* of the parameter vector. We lower-bound the barrier by analyzing the norm change along any path.
 
-**Step 1: Norm gap.** The memorization solution has $\|\theta_\mathcal{M}\|^2 = \Theta(N)$ and the generalization solution has $\|\theta_\mathcal{G}\|^2 = \Theta(1)$. Any path from $\mathcal{M}$ to $\mathcal{G}$ must decrease the norm by $\Theta(N)$.
+**Step 1: Norm gap.** The memorization solution has $\|\theta_{\mathcal{M}}\|^2 = \Theta(N)$ and the generalization solution has $\|\theta_{\mathcal{G}}\|^2 = \Theta(1)$. Any path from $\mathcal{M}$ to $\mathcal{G}$ must decrease the norm by $\Theta(N)$.
 
 **Step 2: Training loss constraint.** Along the path, the training loss cannot increase substantially (otherwise the path crosses a high-loss barrier). The zero-training-loss manifold $\mathcal{Z} = \{\theta : \mathcal{L}_{\mathrm{train}}(\theta) = 0\}$ is a smooth manifold of dimension $P - n_{\mathrm{train}}$ (by the implicit function theorem, since the network is overparameterized). The path must stay near $\mathcal{Z}$ to avoid a loss barrier.
 
@@ -253,7 +253,7 @@ where the minimum is over all continuous paths $\gamma$ from $\mathcal{M}$ to $\
 
 **Step 4: Saddle point.** Between the two basins, there exists a saddle point $\theta_s$ on $\mathcal{Z}$ where the training loss Hessian has a negative eigenvalue in the direction connecting the basins. The free energy at this saddle satisfies:
 $$
-F(\theta_s) - F(\theta_\mathcal{M}) = \lambda(\|\theta_s\|^2 - \|\theta_\mathcal{M}\|^2) + (\mathcal{L}_{\mathrm{train}}(\theta_s) - 0).
+F(\theta_s) - F(\theta_{\mathcal{M}}) = \lambda(\|\theta_s\|^2 - \|\theta_{\mathcal{M}}\|^2) + (\mathcal{L}_{\mathrm{train}}(\theta_s) - 0).
 $$
 Even if $\mathcal{L}_{\mathrm{train}}(\theta_s) = 0$ (the saddle lies on $\mathcal{Z}$), the rearrangement from a random-feature interpolant to a structured Fourier circuit requires passing through configurations where individual parameter contributions are misaligned, creating a norm increase of $\Theta(P)$ before the coordinated low-norm solution is reached. Each of the $P$ parameters contributes $O(1)$ to the barrier, giving $\Delta F = \Omega(P)$. $\square$
 
@@ -264,7 +264,7 @@ The extensivity of $\Delta F$ is analogous to nucleation barriers in first-order
 
 ### 3.3 Kramers Escape Rate Formula
 
-::::{#thm-kramers .callout-note icon="false"}
+::::{.callout-note icon="false"}
 ## Theorem (Grokking Delay via Kramers Escape)
 Under stochastic gradient descent with learning rate $\eta$ and batch noise covariance $\Sigma_{\mathrm{grad}}$, the grokking delay satisfies:
 $$
@@ -293,7 +293,7 @@ where $B_t$ is standard Brownian motion and $T_{\mathrm{eff}}$ captures the effe
 
 **Kramers formula.** By the classical Kramers escape theory [@kramers1940brownian], the mean first-passage time from a metastable minimum (depth $\Delta F$) over a saddle point is:
 $$
-\tau_{\mathrm{escape}} = \frac{2\pi}{\omega_s} \sqrt{\frac{|\det \nabla^2 F(\theta_s)|}{\det \nabla^2 F(\theta_\mathcal{M})}} \exp\!\left(\frac{\Delta F}{T_{\mathrm{eff}}}\right),
+\tau_{\mathrm{escape}} = \frac{2\pi}{\omega_s} \sqrt{\frac{|\det \nabla^2 F(\theta_s)|}{\det \nabla^2 F(\theta_{\mathcal{M}})}} \exp\!\left(\frac{\Delta F}{T_{\mathrm{eff}}}\right),
 $$
 where $\omega_s$ is the magnitude of the unstable eigenvalue at the saddle. The exponential factor dominates, giving (@eq-kramers-grok).
 
@@ -301,11 +301,11 @@ Since $t_{\mathrm{mem}} = O(\tau_{\mathrm{readout}})$ is polynomial in $N$ (from
 
 ### 3.4 Dependence on Control Parameters
 
-::::{#prop-control .callout-note icon="false"}
+::::{.callout-note icon="false"}
 ## Proposition (Parameter Dependence of $\Delta F$)
 The free energy barrier $\Delta F$ depends on the control parameters $(\alpha, \lambda)$ as follows:
 
-1. **Weight decay $\lambda$.** $\Delta F$ is a decreasing function of $\lambda$. Stronger regularization destabilizes the memorization basin (whose free energy $F_\mathcal{M} = \lambda \|\theta_\mathcal{M}\|^2$ grows with $\lambda$) relative to the generalization basin (whose $F_\mathcal{G} = \lambda \|\theta_\mathcal{G}\|^2$ is nearly $\lambda$-independent at $O(\lambda)$). The barrier decreases because the memorization minimum becomes shallower.
+1. **Weight decay $\lambda$.** $\Delta F$ is a decreasing function of $\lambda$. Stronger regularization destabilizes the memorization basin (whose free energy $F_{\mathcal{M}} = \lambda \|\theta_{\mathcal{M}}\|^2$ grows with $\lambda$) relative to the generalization basin (whose $F_{\mathcal{G}} = \lambda \|\theta_{\mathcal{G}}\|^2$ is nearly $\lambda$-independent at $O(\lambda)$). The barrier decreases because the memorization minimum becomes shallower.
 
 2. **Initialization scale $\alpha$.** $\Delta F$ is an increasing function of $\alpha$. Larger $\alpha$ suppresses the feature gradient by $N^{-2\alpha}$, effectively widening the barrier by making the transition path longer in the slow feature directions.
 
@@ -318,7 +318,7 @@ The free energy barrier $\Delta F$ depends on the control parameters $(\alpha, \
 
 ## 4. Connection to Empirical Results {#sec-empirical}
 
-Our empirical reproduction (Issue #4) confirms the theoretical predictions.
+Our empirical reproduction confirms the theoretical predictions. For background on the phase transition framework and order parameters, see the [Survey](index.qmd).
 
 ### 4.1 Observed Grokking Delay
 
@@ -336,9 +336,9 @@ With $\alpha = 0$, $\lambda = 1.0$, $N = 512$, $p = 97$, and $\eta = 10^{-3}$:
 
 1. **$\alpha = 0$ gives finite delay.** At $\alpha = 0$, the timescale ratio $N^{2\alpha} = 1$, so the timescale separation argument alone does not predict a large delay. However, the *barrier mechanism* still applies: the network must escape the memorization basin, which takes time $\sim \exp(\Delta F / T_{\mathrm{eff}})$. The observed $73\times$ delay is consistent with a moderate barrier $\Delta F / T_{\mathrm{eff}} \approx \ln(73) \approx 4.3$.
 
-2. **Strong weight decay ($\lambda = 1.0$) reduces delay.** Per Proposition (@prop-control), large $\lambda$ lowers $\Delta F$, consistent with the relatively modest $73\times$ delay. At $\lambda = 0.01$, the delay is expected to be orders of magnitude larger.
+2. **Strong weight decay ($\lambda = 1.0$) reduces delay.** Per the Proposition on Parameter Dependence (Section 3.4), large $\lambda$ lowers $\Delta F$, consistent with the relatively modest $73\times$ delay. At $\lambda = 0.01$, the delay is expected to be orders of magnitude larger.
 
-3. **Order parameter jumps.** The empirical observation that kernel alignment, effective rank, and SNR all change sharply around $t_{\mathrm{grok}}$ is consistent with the first-order phase transition picture: the order parameter $m$ jumps discontinuously as the system escapes $\mathcal{M}$ and relaxes into $\mathcal{G}$ [@rubin2024grokking].
+3. **Order parameter jumps.** The empirical observation that kernel alignment, effective rank, and SNR all change sharply around $t_{\mathrm{grok}}$ is consistent with the first-order phase transition picture (see [Survey: Physical Order Parameters](index.qmd#sec-order-parameters)): the order parameter $m$ jumps discontinuously as the system escapes $\mathcal{M}$ and relaxes into $\mathcal{G}$ [@rubin2024grokking].
 
 ### 4.3 Spectral Asymmetry Interpretation
 
@@ -358,10 +358,10 @@ We have established that $t_{\mathrm{grok}} \gg t_{\mathrm{mem}}$ through two co
 
 | Mechanism | Delay Scaling | Conditions |
 |:----------|:-------------|:-----------|
-| Timescale separation (@thm-timescale) | $\Omega(N^{2\alpha})$ | $\alpha > 0$, width $N$ |
-| Implicit bias dichotomy (@thm-lyu) | $(1/\lambda)\log\alpha$ | Homogeneous networks |
-| Ridge regression bound (@thm-ridge) | $\sim 1/(\lambda \cdot \lambda_{\min}^+)$ | Linear models |
-| Kramers escape (@thm-kramers) | $\exp(\Omega(P/T_{\mathrm{eff}}))$ | Extensive barrier |
+| Timescale separation (Section 2.4) | $\Omega(N^{2\alpha})$ | $\alpha > 0$, width $N$ |
+| Implicit bias dichotomy (Section 2.5) | $(1/\lambda)\log\alpha$ | Homogeneous networks |
+| Ridge regression bound (Section 2.6) | $\sim 1/(\lambda \cdot \lambda_{\min}^+)$ | Linear models |
+| Kramers escape (Section 3.3) | $\exp(\Omega(P/T_{\mathrm{eff}}))$ | Extensive barrier |
 | Spectral asymmetry | $\sim \kappa$ | Anisotropic features |
 
 These mechanisms are not mutually exclusive. In practice, both the polynomial timescale separation (fast readout vs. slow features) and the exponential barrier crossing (escape from metastable memorization) contribute to the delay, with the dominant mechanism depending on the regime.
