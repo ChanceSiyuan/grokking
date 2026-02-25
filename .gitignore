@@ -8,6 +8,9 @@ dist/
 # Experiment outputs
 results/
 
+# Research notes (not part of codebase)
+paper/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
