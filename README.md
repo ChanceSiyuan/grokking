@@ -1,13 +1,10 @@
 # Grokking: Empirical Reproduction on Modular Arithmetic
 
+[![docs](https://img.shields.io/badge/docs-online-blue.svg)](https://chancesiyuan.github.io/grokking/)
+
 Reproducing the **grokking** phenomenon on modular addition tasks, tracking phase transition diagnostics with five order parameters.
 
 Grokking is a phenomenon where neural networks first memorize training data, then — after a long delay — suddenly generalize to unseen data. This project implements the full experimental infrastructure described in [Issue #4](https://github.com/ChanceSiyuan/grokking/issues/4).
-
-**📖 [Read the full notes →](https://chancesiyuan.github.io/grokking/)**
-
-- [Survey: Grokking as a Phase Transition](https://chancesiyuan.github.io/grokking/index.html) — statistical physics and mean field theory perspective
-- [Analytical Proof of Grokking Delay](https://chancesiyuan.github.io/grokking/grokking-delay-proof.html) — timescale separation and Kramers barrier analysis
 
 ## Setup
 
